@@ -63,6 +63,19 @@ services:
     environment:
       PMA_HOST: sql
 
+  consumer:
+    build: ./consumer
+    container_name: consumer
+    depends_on:
+      - kafka
+      - mongo
+      - sql
+    environment:
+      TEST_SQL_HOST: sql
+      TEST_SQL_USER: root
+      TEST_SQL_PASS: example
+
+
 volumes:
   mongo-data:
   kafka_data:
